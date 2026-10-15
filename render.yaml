@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: watchtower
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: DEMO_MODE
+        value: "false"
+      - key: SCHEDULER_ENABLED
+        value: "true"
+      - key: PLAYWRIGHT_NO_SANDBOX
+        value: "true"
+      - key: DATA_DIR
+        value: /var/data
+      - key: DATABASE_URL
+        value: sqlite:////var/data/watchtower.db
+      - key: SCREENSHOTS_DIR
+        value: /var/data/screenshots
+    disk:
+      name: watchtower-data
+      mountPath: /var/data
+      sizeGB: 1

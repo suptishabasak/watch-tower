@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid #7f8cf5;
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-line bg-raised px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-mute/50 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-accent bg-accent text-[#0b0c10] hover:border-accent hover:bg-accent/90;
+  }
+  .btn-quiet {
+    @apply border-transparent bg-transparent text-mute hover:border-line hover:text-ink;
+  }
+  .btn-danger {
+    @apply border-transparent bg-transparent text-bad hover:border-bad/40 hover:bg-bad/10;
+  }
+  .btn-danger-solid {
+    @apply border-bad bg-bad text-[#14090a] hover:border-bad hover:bg-bad/90;
+  }
+  .input {
+    @apply w-full rounded-md border border-line bg-bg px-3 py-2 text-sm text-ink placeholder:text-mute/70 focus:border-accent focus:outline-none;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .hint {
+    @apply mt-1.5 text-xs text-mute;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
